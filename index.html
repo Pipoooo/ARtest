@@ -9,14 +9,14 @@
 </head>
 <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs>
-        <!-- Marqueur personnalisé -->
+        <!-- Marqueur Hiro -->
         <a-marker preset="hiro">
             <!-- Nom du médicament -->
             <a-text value="Paracétamol 500mg" color="red" align="center" position="0 0.5 0"></a-text>
 
-            <!-- Modèle 3D personnalisé -->
+            <!-- Modèle 3D avec le bon lien -->
             <a-entity 
-                https://github.com/Pipoooo/ARtest/blob/main/medicine_box_blue.glb"  <!-- Remplace avec ton lien -->
+                gltf-model="https://raw.githubusercontent.com/Pipoooo/ARtest/main/medicine_box_blue.glb"
                 position="0 0 0"
                 scale="0.5 0.5 0.5">
             </a-entity>
