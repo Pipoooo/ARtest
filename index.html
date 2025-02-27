@@ -9,18 +9,14 @@
 </head>
 <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs>
-        <!-- Marqueur Hiro -->
+        <!-- Marqueur personnalisé -->
         <a-marker preset="hiro">
-            <!-- Affichage des infos du médicament -->
-            <a-entity position="0 0.5 0">
-                <a-text value="Doliprane 1000mg" color="red" align="center" position="0 0.3 0"></a-text>
-                <a-text value="Usage: Douleur et fièvre" color="black" align="center" position="0 0.1 0"></a-text>
-                <a-text value="Posologie: 1 comprimé toutes les 8h" color="blue" align="center" position="0 -0.1 0"></a-text>
-            </a-entity>
-            
-            <!-- Modèle 3D (optionnel, si tu as un fichier glTF) -->
+            <!-- Nom du médicament -->
+            <a-text value="Paracétamol 500mg" color="red" align="center" position="0 0.5 0"></a-text>
+
+            <!-- Modèle 3D personnalisé -->
             <a-entity 
-                gltf-model="https://cdn.glitch.global/27c77c42-6857-4a7f-9025-79a1b8ea0b9c/pill.glb"
+                https://github.com/Pipoooo/ARtest/blob/main/medicine_box_blue.glb"  <!-- Remplace avec ton lien -->
                 position="0 0 0"
                 scale="0.5 0.5 0.5">
             </a-entity>
