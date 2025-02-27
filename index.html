@@ -1,65 +1,32 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Pharmacy</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.2/aframe/build/aframe-ar.min.js"></script>
-  </head>
-  <body style="margin: 0; overflow: hidden;">
+</head>
+<body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs>
-      
-      <!-- Marqueur AR pour scanner la boîte de médicament -->
-      <a-marker type="pattern" url="pattern-images.patt">
-        
-        <!-- Titre du médicament -->
-        <a-text value="Paracétamol 500mg" position="-0.5 0.5 0" scale="0.5 0.5 0.5" color="red"></a-text>
-        
-        <!-- Boîte en 3D pour symboliser le médicament -->
-        <a-box position="0 0 0" scale="0.3 0.2 0.1" color="blue"></a-box>
+        <!-- Marqueur Hiro -->
+        <a-marker preset="hiro">
+            <!-- Affichage des infos du médicament -->
+            <a-entity position="0 0.5 0">
+                <a-text value="Doliprane 1000mg" color="red" align="center" position="0 0.3 0"></a-text>
+                <a-text value="Usage: Douleur et fièvre" color="black" align="center" position="0 0.1 0"></a-text>
+                <a-text value="Posologie: 1 comprimé toutes les 8h" color="blue" align="center" position="0 -0.1 0"></a-text>
+            </a-entity>
+            
+            <!-- Modèle 3D (optionnel, si tu as un fichier glTF) -->
+            <a-entity 
+                gltf-model="https://cdn.glitch.global/27c77c42-6857-4a7f-9025-79a1b8ea0b9c/pill.glb"
+                position="0 0 0"
+                scale="0.5 0.5 0.5">
+            </a-entity>
+        </a-marker>
 
-        <!-- Boutons pour afficher les infos -->
-        <a-entity id="patient-info" visible="false">
-          <a-text value="Usage: Antalgique et antipyrétique\nPosologie: 1 à 2 comprimés toutes les 6h" 
-                  position="-0.5 0.3 0" scale="0.3 0.3 0.3" color="black"></a-text>
-        </a-entity>
-
-        <a-entity id="doctor-info" visible="false">
-          <a-text value="Indications: Fièvre, douleurs modérées\nContre-indications: Insuffisance hépatique" 
-                  position="-0.5 0.1 0" scale="0.3 0.3 0.3" color="black"></a-text>
-        </a-entity>
-
-        <a-entity id="pharmacist-info" visible="false">
-          <a-text value="Stock: 120 boîtes\nPéremption: 12/2026\nLaboratoire: Sanofi" 
-                  position="-0.5 -0.1 0" scale="0.3 0.3 0.3" color="black"></a-text>
-        </a-entity>
-
-        <!-- Boutons interactifs -->
-        <a-plane position="-0.5 -0.4 0" width="0.6" height="0.1" color="green" onclick="showInfo('patient-info')">
-          <a-text value="Patient" position="-0.2 0 0" scale="0.3 0.3 0.3" color="white"></a-text>
-        </a-plane>
-
-        <a-plane position="0 -0.4 0" width="0.6" height="0.1" color="blue" onclick="showInfo('doctor-info')">
-          <a-text value="Médecin" position="-0.2 0 0" scale="0.3 0.3 0.3" color="white"></a-text>
-        </a-plane>
-
-        <a-plane position="0.5 -0.4 0" width="0.6" height="0.1" color="orange" onclick="showInfo('pharmacist-info')">
-          <a-text value="Pharmacien" position="-0.2 0 0" scale="0.3 0.3 0.3" color="white"></a-text>
-        </a-plane>
-
-      </a-marker>
-
-      <a-entity camera></a-entity>
-
+        <a-camera position="0 0 0"></a-camera>
     </a-scene>
-
-    <script>
-      function showInfo(id) {
-        document.getElementById('patient-info').setAttribute('visible', false);
-        document.getElementById('doctor-info').setAttribute('visible', false);
-        document.getElementById('pharmacist-info').setAttribute('visible', false);
-        
-        document.getElementById(id).setAttribute('visible', true);
-      }
-    </script>
-
-  </body>
+</body>
 </html>
