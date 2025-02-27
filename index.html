@@ -2,14 +2,64 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js@1.7.2/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.2/aframe/build/aframe-ar.min.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs>
-      <a-marker preset="hiro">
-        <a-box position="0 0.5 0" material="color: red;"></a-box>
+      
+      <!-- Marqueur AR pour scanner la boîte de médicament -->
+      <a-marker type="pattern" url="pattern-images.patt">
+        
+        <!-- Titre du médicament -->
+        <a-text value="Paracétamol 500mg" position="-0.5 0.5 0" scale="0.5 0.5 0.5" color="red"></a-text>
+        
+        <!-- Boîte en 3D pour symboliser le médicament -->
+        <a-box position="0 0 0" scale="0.3 0.2 0.1" color="blue"></a-box>
+
+        <!-- Boutons pour afficher les infos -->
+        <a-entity id="patient-info" visible="false">
+          <a-text value="Usage: Antalgique et antipyrétique\nPosologie: 1 à 2 comprimés toutes les 6h" 
+                  position="-0.5 0.3 0" scale="0.3 0.3 0.3" color="black"></a-text>
+        </a-entity>
+
+        <a-entity id="doctor-info" visible="false">
+          <a-text value="Indications: Fièvre, douleurs modérées\nContre-indications: Insuffisance hépatique" 
+                  position="-0.5 0.1 0" scale="0.3 0.3 0.3" color="black"></a-text>
+        </a-entity>
+
+        <a-entity id="pharmacist-info" visible="false">
+          <a-text value="Stock: 120 boîtes\nPéremption: 12/2026\nLaboratoire: Sanofi" 
+                  position="-0.5 -0.1 0" scale="0.3 0.3 0.3" color="black"></a-text>
+        </a-entity>
+
+        <!-- Boutons interactifs -->
+        <a-plane position="-0.5 -0.4 0" width="0.6" height="0.1" color="green" onclick="showInfo('patient-info')">
+          <a-text value="Patient" position="-0.2 0 0" scale="0.3 0.3 0.3" color="white"></a-text>
+        </a-plane>
+
+        <a-plane position="0 -0.4 0" width="0.6" height="0.1" color="blue" onclick="showInfo('doctor-info')">
+          <a-text value="Médecin" position="-0.2 0 0" scale="0.3 0.3 0.3" color="white"></a-text>
+        </a-plane>
+
+        <a-plane position="0.5 -0.4 0" width="0.6" height="0.1" color="orange" onclick="showInfo('pharmacist-info')">
+          <a-text value="Pharmacien" position="-0.2 0 0" scale="0.3 0.3 0.3" color="white"></a-text>
+        </a-plane>
+
       </a-marker>
+
       <a-entity camera></a-entity>
+
     </a-scene>
+
+    <script>
+      function showInfo(id) {
+        document.getElementById('patient-info').setAttribute('visible', false);
+        document.getElementById('doctor-info').setAttribute('visible', false);
+        document.getElementById('pharmacist-info').setAttribute('visible', false);
+        
+        document.getElementById(id).setAttribute('visible', true);
+      }
+    </script>
+
   </body>
 </html>
